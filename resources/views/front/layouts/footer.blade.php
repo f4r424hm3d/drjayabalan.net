@@ -1,6 +1,6 @@
   <!-- Start Footer Area -->
   <footer class="footer">
-    <div class="footer-top pt-70 pb-50" style="background-image: url('assets/img/footer-bg.png');">
+    <div class="footer-top pt-70 pb-50" style="background-image: url('{{ url('/web/') }}/assets/img/footer-bg.png');">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -60,13 +60,18 @@
               <ul class="contact-info">
                 <li><i class="fa-solid fa-location-dot"></i> <span>Suite 302-303, Hospital Pantai Ipoh, 126, Jalan
                     Tambun, Taman Ipoh, 31400, Ipoh, Perak Darul Ridzuan, Malaysia.</span> </li>
-                <li><i class="fa fa-clock"></i> <span>Mon-: 9:00Am – 5:00Pm<br>
+                <li>
+                  <i class="fa fa-clock"></i>
+                  <span>
+                    Mon-: 9:00Am – 5:00Pm<br>
                     Tue-: 9:00Am – 5:00Pm<br>
                     Wed-: 5:00Pm – 9:00Pm<br>
                     Thu-: 9:00Am – 5:00Pm<br>
                     Fri-: 9:00Am – 5:00Pm<br>
                     Sat-: 9:00Am – 1:00Pm<br>
-                    Sunday-: Holiday</span></li>
+                    Sunday-: Holiday
+                  </span>
+                </li>
               </ul>
             </div>
           </div>
