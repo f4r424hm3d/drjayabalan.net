@@ -3,33 +3,33 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Seo;
+use App\Models\DynamicPageSeo;
 use Illuminate\Http\Request;
 
-class SeoC extends Controller
+class DynamicPageSeoC extends Controller
 {
   public function index($id = null)
   {
-    $rows = Seo::all();
+    $rows = DynamicPageSeo::get();
     if ($id != null) {
-      $sd = Seo::find($id);
+      $sd = DynamicPageSeo::find($id);
       if (!is_null($sd)) {
         $ft = 'edit';
-        $url = url('admin/seos/update/' . $id);
+        $url = url('admin/dynamic-page-seos/update/' . $id);
         $title = 'Update';
       } else {
-        return redirect('admin/seos');
+        return redirect('admin/dynamic-page-seos');
       }
     } else {
       $ft = 'add';
-      $url = url('admin/seos/store');
+      $url = url('admin/dynamic-page-seos/store');
       $title = 'Add New';
       $sd = '';
     }
-    $page_title = "SEO";
-    $page_route = "seos";
+    $page_title = "Dynamic Page SEO";
+    $page_route = "dynamic-page-seos";
     $data = compact('rows', 'sd', 'ft', 'url', 'title', 'page_title', 'page_route');
-    return view('admin.seos')->with($data);
+    return view('admin.dynamic-page-seos')->with($data);
   }
   public function store(Request $request)
   {
@@ -37,11 +37,11 @@ class SeoC extends Controller
     // die;
     $request->validate(
       [
-        'url' => 'required|unique:seos,url',
+        'url' => 'required|unique:dynamic_page_seos,url',
         'seo_rating' => 'nullable|numeric',
       ]
     );
-    $field = new Seo;
+    $field = new DynamicPageSeo;
     $field->url = $request['url'];
     $field->meta_title = $request['meta_title'];
     $field->meta_keyword = $request['meta_keyword'];
@@ -50,22 +50,22 @@ class SeoC extends Controller
     $field->seo_rating = $request['seo_rating'];
     $field->save();
     session()->flash('smsg', 'New record has been added successfully.');
-    return redirect('admin/seos');
+    return redirect('admin/dynamic-page-seos');
   }
   public function delete($id)
   {
     //echo $id;
-    echo $result = Seo::find($id)->delete();
+    echo $result = DynamicPageSeo::find($id)->delete();
   }
   public function update($id, Request $request)
   {
     $request->validate(
       [
-        'url' => 'required|unique:seos,url,' . $id,
+        'url' => 'required|unique:dynamic_page_seos,url,' . $id,
         'seo_rating' => 'nullable|numeric',
       ]
     );
-    $field = Seo::find($id);
+    $field = DynamicPageSeo::find($id);
     $field->url = $request['url'];
     $field->meta_title = $request['meta_title'];
     $field->meta_keyword = $request['meta_keyword'];
@@ -74,6 +74,6 @@ class SeoC extends Controller
     $field->seo_rating = $request['seo_rating'];
     $field->save();
     session()->flash('smsg', 'Record has been updated successfully.');
-    return redirect('admin/seos');
+    return redirect('admin/dynamic-page-seos');
   }
 }

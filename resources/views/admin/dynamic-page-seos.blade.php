@@ -1,3 +1,6 @@
+@php
+$seg3 = Request::segment(3)??null;
+@endphp
 @extends('admin.layouts.main')
 @push('title')
 <title>{{ $page_title }}</title>
@@ -27,6 +30,7 @@
         <!-- NOTIFICATION FIELD END -->
       </div>
     </div>
+    @if ($seg3 == 'add' || $ft=='edit')
     <div class="row">
       <div class="col-xl-12">
         <div class="card">
@@ -40,28 +44,22 @@
             </h4>
           </div>
           <div class="card-body  {{ $ft=='edit'?'':'hide-this' }}" id="tblCDiv">
-            <form action="{{ $url }}/" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form action="{{ $url }}" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
               @csrf
               <div class="row">
-                <div class="col-md-8 col-sm-12 mb-3">
-                  <x-InputField type="text" label="Enter Service Title" name="headline" id="headline" :ft="$ft" :sd="$sd"></x-InputField>
-                </div>
                 <div class="col-md-4 col-sm-12 mb-3">
-                  <x-InputField type="file" label="Thumbnail" name="thumbnail" id="thumbnail" :ft="$ft" :sd="$sd"></x-InputField>
-                </div>
-                <div class="col-md-12 col-sm-12 mb-3">
-                  <x-TextareaField label="Description" name="description" id="description" :ft="$ft" :sd="$sd"></x-TextareaField>
+                  <x-InputField type="text" label="Enter Page Name" name="url" id="url" :ft="$ft" :sd="$sd">
+                  </x-InputField>
                 </div>
               </div>
-              <hr>
-              <!--  SEO INPUT FILED COMPONENT  -->
+              <!--  SEO INPUT FIELD COMPONENT START -->
               <x-SeoField :ft="$ft" :sd="$sd"></x-SeoField>
-              <!--  SEO INPUT FILED COMPONENT END  -->
+              <!--  SEO INPUT FIELD COMPONENT END  -->
               @if ($ft == 'add')
-                <button type="reset" class="btn btn-sm btn-warning  mr-1"><i class="ti-trash"></i> Reset</button>
+              <button type="reset" class="btn btn-sm btn-warning  mr-1"><i class="ti-trash"></i> Reset</button>
               @endif
               @if ($ft == 'edit')
-                <a href="{{ aurl($page_route) }}" class="btn btn-sm btn-info "><i class="ti-trash"></i> Cancel</a>
+              <a href="{{ aurl($page_route) }}" class="btn btn-sm btn-info "><i class="ti-trash"></i> Cancel</a>
               @endif
               <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             </form>
@@ -70,18 +68,27 @@
         <!-- end card -->
       </div>
     </div>
+    @endif
+
     <div class="row">
       <div class="col-12">
         <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              {{ $page_title }} List
+            </h4>
+          </div>
           <div class="card-body">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
+            <table id="datatable" class="table table-bordered dt-responsiv nowra w-100">
               <thead>
                 <tr>
-                  <th>Sr. No.</th>
-                  <th>Service Name</th>
+                  <th>S.No.</th>
+                  <th>URL</th>
+                  <th>Title</th>
+                  <th>Keyword</th>
+                  <th>Content</th>
                   <th>Description</th>
-                  <th>Thumbnail</th>
-                  <th>SEO</th>
+                  <th>SEO Rating</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -92,22 +99,31 @@
                 @foreach ($rows as $row)
                 <tr id="row{{ $row->id }}">
                   <td>{{ $i }}</td>
-                  <td>{{ $row->headline }}</td>
                   <td>
-                    @if ($row->description != null)
-                    <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#SModalScrollable{{ $row->id }}">View</button>
+                    <?php echo $row->url; ?>
+                  </td>
+                  <td>
+                    <?php echo $row->meta_title; ?>
+                  </td>
+                  <td>
+                    <?php echo $row->meta_keyword; ?>
+                  </td>
+                  <td>
+                    <?php echo $row->page_content; ?>
+                  </td>
+                  <td>
+                    @if ($row->meta_description != null)
+                    <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#SModalScrollable{{ $row->id }}">View</button>
                     <div class="modal fade" id="SModalScrollable{{ $row->id }}" tabindex="-1" role="dialog"
                       aria-labelledby="SModalScrollableTitle{{ $row->id }}" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="SModalScrollableTitle{{ $row->id }}">
-                              SEO
-                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            {!! $row->description !!}
+                            <?php echo $row->meta_description; ?>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -119,48 +135,8 @@
                     Null
                     @endif
                   </td>
+                  <td>{{ $row->seo_rating }}</td>
                   <td>
-                    @if ($row->imgpath != null)
-                    <img src="{{ asset($row->imgpath) }}" alt="" height="80" width="80">
-                    @else
-                    N/A
-                    @endif
-                  </td>
-                  <td>
-                    @if ($row->meta_title != null)
-                    <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#SeoModalScrollable{{ $row->id }}">View</button>
-                    <div class="modal fade" id="SeoModalScrollable{{ $row->id }}" tabindex="-1" role="dialog"
-                      aria-labelledby="SeoModalScrollableTitle{{ $row->id }}" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="SeoModalScrollableTitle{{ $row->id }}">
-                              SEO
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            {!! $row->meta_title !!} <br>
-                            {!! $row->meta_keyword !!} <br>
-                            {!! $row->meta_description !!} <br>
-                            {!! $row->page_content !!} <br>
-                            {!! $row->seo_rating !!}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    @else
-                    Null
-                    @endif
-                  </td>
-                  <td>
-                    <a href="javascript:void()" onclick="DeleteAjax('{{ $row->id }}')"
-                      class="waves-effect waves-light btn btn-xs btn-outline btn-danger">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
                     <a href="{{ url('admin/'.$page_route.'/update/' . $row->id) }}"
                       class="waves-effect waves-light btn btn-xs btn-outline btn-info">
                       <i class="fa fa-edit" aria-hidden="true"></i>
@@ -180,6 +156,24 @@
   </div>
 </div>
 <script>
+  $(document).ready(function() {
+    $('#name').change(function() {
+      var val = $('#name').val();
+      if (val != '') {
+        $.ajax({
+          url: "{{ url('common/slugify/') }}",
+          method: "GET",
+          data: {
+            val: val,
+          },
+          success: function(data) {
+            $('#slug').val(data);
+          }
+        });
+      }
+    });
+  });
+
   function DeleteAjax(id) {
     //alert(id);
     var cd = confirm("Are you sure ?");
@@ -201,6 +195,8 @@
     }
   }
 
-  CKEDITOR.replace('description');
+  CKEDITOR.replace("highlights");
+  CKEDITOR.replace("experiance");
+  CKEDITOR.replace("education");
 </script>
 @endsection

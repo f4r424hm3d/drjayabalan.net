@@ -59,7 +59,7 @@
               style="padding:20px 0px 5px 0px;background:#3f4079;color:white;">
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
                 <a href="https://www.tutelagestudy.com/" target="_blank" rel="noopener noreferrer"
-                  style="text-decoration:none;color:#ffffff;">Tutelage Study</a>
+                  style="text-decoration:none;color:#ffffff;">Dr Jayabalan</a>
                 <p style="margin-bottom:0;line-height:12px;font-weight:normal;margin-top:15px;font-size:18px;"></p>
               </h1>
             </td>
@@ -68,7 +68,7 @@
             <td valign="top" class="content" style="background:white;padding:25px;">
               <p style="text-align: justify">
                 Hi Team,<br>
-                New Inquiry from <b>Tutelage Study</b><br>
+                New Inquiry from <b>Dr Jayabalan</b><br>
 
               <ul>
                 <li>Name : {{ $name }}</li>

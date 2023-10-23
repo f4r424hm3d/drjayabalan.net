@@ -40,11 +40,12 @@
             </h4>
           </div>
           <div class="card-body" id="tblCDiv">
-            <form action="{{ $url }}/" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form action="{{ $url }}" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
               @csrf
               <div class="row">
                 <div class="col-md-4 col-sm-12 mb-3">
-                  <x-InputField type="text" label="Category Name" name="category_name" id="category_name" :ft="$ft" :sd="$sd"></x-InputField>
+                  <x-InputField type="text" label="Category Name" name="category_name" id="category_name" :ft="$ft"
+                    :sd="$sd"></x-InputField>
                 </div>
               </div>
               <hr>
@@ -52,10 +53,10 @@
               <x-SeoField :ft="$ft" :sd="$sd"></x-SeoField>
               <!--  SEO INPUT FIELD COMPONENT END  -->
               @if ($ft == 'add')
-                <button type="reset" class="btn btn-sm btn-warning  mr-1"><i class="ti-trash"></i> Reset</button>
+              <button type="reset" class="btn btn-sm btn-warning  mr-1"><i class="ti-trash"></i> Reset</button>
               @endif
               @if ($ft == 'edit')
-                <a href="{{ aurl($page_route) }}" class="btn btn-sm btn-info "><i class="ti-trash"></i> Cancel</a>
+              <a href="{{ aurl($page_route) }}" class="btn btn-sm btn-info "><i class="ti-trash"></i> Cancel</a>
               @endif
               <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             </form>
@@ -87,7 +88,8 @@
                   <td>{{ $row->category_name }}</td>
                   <td>
                     @if ($row->meta_title != null)
-                    <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#SeoModalScrollable{{ $row->id }}">View</button>
+                    <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#SeoModalScrollable{{ $row->id }}">View</button>
                     <div class="modal fade" id="SeoModalScrollable{{ $row->id }}" tabindex="-1" role="dialog"
                       aria-labelledby="SeoModalScrollableTitle{{ $row->id }}" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-scrollable">

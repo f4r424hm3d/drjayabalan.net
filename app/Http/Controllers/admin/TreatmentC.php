@@ -3,37 +3,33 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogCategory;
-use App\Models\User;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 
-class BlogC extends Controller
+class TreatmentC extends Controller
 {
   public function index($id = null)
   {
-    $users = User::all();
-    $category = BlogCategory::all();
-    $rows = Blog::get();
+    $rows = Treatment::get();
     if ($id != null) {
-      $sd = Blog::find($id);
+      $sd = Treatment::find($id);
       if (!is_null($sd)) {
         $ft = 'edit';
-        $url = url('admin/blogs/update/' . $id);
+        $url = url('admin/treatments/update/' . $id);
         $title = 'Update';
       } else {
-        return redirect('admin/blogs');
+        return redirect('admin/treatments');
       }
     } else {
       $ft = 'add';
-      $url = url('admin/blogs/store');
+      $url = url('admin/treatments/store');
       $title = 'Add New';
       $sd = '';
     }
-    $page_title = "Blogs";
-    $page_route = "blogs";
-    $data = compact('rows', 'sd', 'ft', 'url', 'title', 'page_title', 'page_route', 'category', 'users');
-    return view('admin.blogs')->with($data);
+    $page_title = "Treatment";
+    $page_route = "treatments";
+    $data = compact('rows', 'sd', 'ft', 'url', 'title', 'page_title', 'page_route');
+    return view('admin.treatments')->with($data);
   }
   public function store(Request $request)
   {
@@ -41,81 +37,72 @@ class BlogC extends Controller
     // die;
     $request->validate(
       [
-        'category_id' => 'required',
-        'title' => 'required|unique:blogs,title',
-        'description' => 'required',
+        'treatment_name' => 'required|unique:treatments,treatment_name',
       ]
     );
-    $field = new Blog;
+    $field = new Treatment;
     if ($request->hasFile('thumbnail')) {
       $fileOriginalName = $request->file('thumbnail')->getClientOriginalName();
       $fileNameWithoutExtention = pathinfo($fileOriginalName, PATHINFO_FILENAME);
       $file_name_slug = slugify($fileNameWithoutExtention);
       $fileExtention = $request->file('thumbnail')->getClientOriginalExtension();
       $file_name = $file_name_slug . '_' . time() . '.' . $fileExtention;
-      $move = $request->file('thumbnail')->move('uploads/blogs/', $file_name);
+      $move = $request->file('thumbnail')->move('uploads/treatments/', $file_name);
       if ($move) {
-        $field->thumbnail_name = $file_name;
-        $field->thumbnail_path = 'uploads/blogs/' . $file_name;
+        $field->image_name = $file_name;
+        $field->image_path = 'uploads/treatments/' . $file_name;
       } else {
         session()->flash('emsg', 'Some problem occured. File not uploaded.');
       }
     }
-    $field->category_id = $request['category_id'];
-    $field->user_id = $request['user_id'];
-    $field->title = $request['title'];
-    $field->slug = slugify($request['title']);
+    $field->treatment_name = $request['treatment_name'];
+    $field->treatment_slug = slugify($request['treatment_slug'] ?? $request['treatment_name']);
     $field->description = $request['description'];
     $field->meta_title = $request['meta_title'];
     $field->meta_keyword = $request['meta_keyword'];
     $field->meta_description = $request['meta_description'];
     $field->page_content = $request['page_content'];
-    $field->seo_rating = $request['seo_rating'];
+    //$field->seo_rating = $request['seo_rating'];
     $field->save();
     session()->flash('smsg', 'New record has been added successfully.');
-    return redirect('admin/blogs');
+    return redirect('admin/treatments');
   }
   public function delete($id)
   {
     //echo $id;
-    echo $result = Blog::find($id)->delete();
+    echo $result = Treatment::find($id)->delete();
   }
   public function update($id, Request $request)
   {
     $request->validate(
       [
-        'category_id' => 'required',
-        'title' => 'required|unique:blogs,title,' . $id,
-        'description' => 'required',
+        'treatment_name' => 'required|unique:treatments,treatment_name,' . $id
       ]
     );
-    $field = Blog::find($id);
+    $field = Treatment::find($id);
     if ($request->hasFile('thumbnail')) {
       $fileOriginalName = $request->file('thumbnail')->getClientOriginalName();
       $fileNameWithoutExtention = pathinfo($fileOriginalName, PATHINFO_FILENAME);
       $file_name_slug = slugify($fileNameWithoutExtention);
       $fileExtention = $request->file('thumbnail')->getClientOriginalExtension();
       $file_name = $file_name_slug . '_' . time() . '.' . $fileExtention;
-      $move = $request->file('thumbnail')->move('uploads/blogs/', $file_name);
+      $move = $request->file('thumbnail')->move('uploads/treatments/', $file_name);
       if ($move) {
-        $field->thumbnail_name = $file_name;
-        $field->thumbnail_path = 'uploads/blogs/' . $file_name;
+        $field->image_name = $file_name;
+        $field->image_path = 'uploads/treatments/' . $file_name;
       } else {
         session()->flash('emsg', 'Some problem occured. File not uploaded.');
       }
     }
-    $field->category_id = $request['category_id'];
-    $field->user_id = $request['user_id'];
-    $field->title = $request['title'];
-    $field->slug = slugify($request['title']);
+    $field->treatment_name = $request['treatment_name'];
+    $field->treatment_slug = slugify($request['treatment_slug'] ?? $request['treatment_name']);
     $field->description = $request['description'];
     $field->meta_title = $request['meta_title'];
     $field->meta_keyword = $request['meta_keyword'];
     $field->meta_description = $request['meta_description'];
     $field->page_content = $request['page_content'];
-    $field->seo_rating = $request['seo_rating'];
     $field->save();
     session()->flash('smsg', 'Record has been updated successfully.');
-    return redirect('admin/blogs');
+    return redirect('admin/treatments');
   }
 }

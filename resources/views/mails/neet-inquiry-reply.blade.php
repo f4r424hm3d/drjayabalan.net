@@ -16,7 +16,7 @@
             <td valign="top" align="center" class="masthead" style="padding:20px 0;background:#03618c;color:white;">
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
                 <a href="https://wwww.tutelagestudy.com" target="_blank" rel="noopener noreferrer"
-                  style="text-decoration:none;color:#ffffff;">Tutelage Study</a>
+                  style="text-decoration:none;color:#ffffff;">Dr Jayabalan</a>
                 <p style="margin-bottom:0;line-height:12px;font-weight:normal;margin-top:15px;font-size:18px;"></p>
               </h1>
             </td>

@@ -17,7 +17,7 @@
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
                 <a href="https://www.ieltspractice.britannicaoverseas.com/" target="_blank" rel="noopener noreferrer"
                   style="text-decoration:none;color:#ffffff;">
-                  Study Abroad
+                  Dr Jayabalan
                 </a>
                 <p style="margin-bottom:0;line-height:12px;font-weight:normal;margin-top:15px;font-size:18px;"></p>
               </h1>
