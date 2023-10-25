@@ -50,6 +50,7 @@ use App\Http\Controllers\TreatmentFc;
 use App\Models\Blog;
 use App\Models\Treatment;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,56 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Clear Cache facade value:
+Route::get('/clear-cache', function () {
+  $exitCode = Artisan::call('cache:clear');
+  return '<h1>Cache facade value cleared</h1>';
+});
+
+//Reoptimized class loader:
+Route::get('/optimize', function () {
+  $exitCode = Artisan::call('optimize');
+  return '<h1>Reoptimized class loader</h1>';
+});
+Route::get('/f/optimize', function () {
+  $exitCode = Artisan::call('optimize');
+  return true;
+});
+
+//Route cache:
+Route::get('/route-cache', function () {
+  $exitCode = Artisan::call('route:cache');
+  return '<h1>Routes cached</h1>';
+});
+
+//Clear Route cache:
+Route::get('/route-clear', function () {
+  $exitCode = Artisan::call('route:clear');
+  return '<h1>Route cache cleared</h1>';
+});
+
+//Clear View cache:
+Route::get('/view-clear', function () {
+  $exitCode = Artisan::call('view:clear');
+  return '<h1>View cache cleared</h1>';
+});
+
+//Clear Config cache:
+Route::get('/config-cache', function () {
+  $exitCode = Artisan::call('config:cache');
+  return '<h1>Clear Config cleared</h1>';
+});
+
+//For MIgrate:
+Route::get('/migrate', function () {
+  $exitCode = Artisan::call('migrate');
+  return '<h1>Migrated</h1>';
+});
+Route::get('/f/migrate', function () {
+  $exitCode = Artisan::call('migrate');
+  return true;
+});
 
 Route::get('/', [HomeFc::class, 'index']);
 Route::get('/about-us', [AboutFc::class, 'index']);

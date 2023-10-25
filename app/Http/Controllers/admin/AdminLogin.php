@@ -14,11 +14,11 @@ class AdminLogin extends Controller
   }
   public function login(Request $request)
   {
-    //printArray($request->all());
+    printArray($request->all());
     //die;
     $field = User::where('role', 'admin')->where('email', $request['username'])->orWhere('username', $request['username'])->first();
-    // printArray($field->toArray());
-    // die;
+    printArray($field->toArray());
+    die;
     if (is_null($field)) {
       session()->flash('emsg', 'Email address not exist.');
       return redirect('admin/login');
