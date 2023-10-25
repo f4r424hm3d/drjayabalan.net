@@ -1,3 +1,7 @@
+@php
+  use App\Models\Treatment;
+  $treatments = Treatment::all();
+@endphp
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -79,26 +83,17 @@
                   </li>
                   <li class="menu-item-has-children"><a href="{{ url('/treatments') }}">Treatments</a>
                     <ul>
-                      <li class="menu-item-has-children"><a href="#">Investigations &amp; Treatment</a>
+                      @foreach ($treatments as $row)
+                        <li class="menu-item-has-children">
+                          <a href="{{ url($row->treatment_slug) }}">{{ $row->treatment_name }}</a>
+                        </li>
+                      @endforeach
+                      {{-- <li class="menu-item-has-children"><a href="#">Investigations &amp; Treatment</a>
                         <ul>
                           <li><a href="male-infertility-management.html">Male Infertility Management</a></li>
                           <li><a href="female-infertility-management.html">Female Infertility Management</a></li>
                         </ul>
-                      </li>
-                      <li class="menu-item-has-children"><a href="#">Artificial Reproductive Technique</a>
-                        <ul>
-                          <li><a href="intrauterine-insemination.html">Intrauterine Insemination</a></li>
-                          <li><a href="in-vitro-fertilization.html">In Vitro Fertilization</a></li>
-                        </ul>
-                      </li>
-                      <li class="menu-item-has-children"><a href="#">More Treatments</a>
-                        <ul>
-                          <li><a href="obstetrics-and-gynaecology.html">Obstetrics And Gynaecology</a></li>
-                          <li><a href="gynae-surgeries.html">Gynae Surgeries</a></li>
-                          <li><a href="sexualy-dysfunction-therapy.html">Sexualy Dysfunction Therapy</a></li>
-                          <li><a href="birth-control.html">Birth Control</a></li>
-                        </ul>
-                      </li>
+                      </li> --}}
                     </ul>
                   </li>
                   <li><a href="{{ url('/contact-us') }}">Contact us</a></li>

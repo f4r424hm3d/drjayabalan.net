@@ -32,27 +32,25 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="get-appointment-form">
-            <form action="#">
+            <form action="{{ url('inquiry/appointment/') }}/" method="post">
+              @csrf
+              <input type="hidden" name="source" value="appointment">
+              <input type="hidden" name="source_path" value="{{ URL::full() }}">
               <div class="row">
 
                 <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
-                    <label for="depname">Treatment</label>
-                    <select name="depname" id="depname">
+                    <label for="treatment_id">Treatment</label>
+                    <select name="treatment_id" id="treatment_id">
                       <option>Select Treatment</option>
-                      <option value="">Male Infertility Management</option>
-                      <option value="">Female Infertility Management</option>
-                      <option value="">Intrauterine Insemination</option>
-                      <option value="">In Vitro Fertilization</option>
-                      <option value="">Obstetrics And Gynaecology</option>
-                      <option value="">Gynae Surgeries</option>
-                      <option value="">Sexualy Dysfunction Therapy</option>
-                      <option value="">Birth Control</option>
+                      @foreach ($treatments as $row)
+                        <option value="{{ $row->id }}">{{ $row->treatment_name }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-6">
+                {{-- <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
                     <label for="docname">Doctor</label>
                     <select name="docname" id="docname">
@@ -60,46 +58,66 @@
                       <option value="">Dr. Jaya Balan</option>
                     </select>
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
-                    <label for="yourname">Your Name</label>
-                    <input type="text" placeholder="Write your name" name="yourname" id="yourname">
+                    <label for="name">Your Name</label>
+                    <input type="text" placeholder="Write your name" name="name" id="name"
+                      value="{{ old('name') }}">
+                    @error('name')
+                      <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
                     <label for="phone">Phone Number</label>
-                    <input type="text" placeholder="+66 555 666 888 22" name="phone" id="phone">
+                    <input type="text" placeholder="+66 555 666 888 22" name="mobile" id="mobile"
+                      value="{{ old('mobile') }}">
+                    @error('mobile')
+                      <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
-                    <label for="email">Your E-mail</label>
-                    <input type="email" placeholder="info@gmail.com" name="email" id="email">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="example@gmail.com" name="email" id="email"
+                      value="{{ old('email') }}">
+                    @error('email')
+                      <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
                   <div class="single-field">
-                    <label for="email">Date</label>
-                    <input type="date" placeholder="info@gmail.com" name="email" id="email">
+                    <label for="appointment_date">Date</label>
+                    <input type="date" name="appointment_date" id="appointment_date"
+                      value="{{ old('appointment_date') }}">
+                    @error('appointment_date')
+                      <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
 
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-9 col-sm-6">
                   <div class="single-field">
-                    <label for="yourmessage">Message</label>
-                    <input type="text" placeholder="Write Your Message" name="yourmessage" id="yourmessage">
+                    <label for="message">Message</label>
+                    <input type="text" name="message" id="message" value="{{ old('message') }}">
+                    @error('message')
+                      <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
                 </div>
 
                 <div class="col-lg-3col-md-6 align-self-end">
                   <div class="single-field">
-                    <button class="button-1">Get Appointment <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="button-1" type="submit">Get Appointment <i
+                        class="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>
               </div>

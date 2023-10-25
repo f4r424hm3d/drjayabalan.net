@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  public function getTreatment()
+  {
+    return $this->hasOne(Treatment::class, 'id', 'treatment_id');
+  }
 }

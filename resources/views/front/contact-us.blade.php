@@ -56,7 +56,7 @@
               <h2>Have Questions? <br> Get in Touch!</h2>
             </div>
             <div class="get-appointment-form">
-              <form id="contact-for" action="{{ url('inquiry/contact-us') }}" method="POST">
+              <form id="contact-for" action="{{ url('inquiry/contact-us/') }}/" method="POST">
                 @csrf
                 <input type="hidden" name="source" value="contact-us">
                 <input type="hidden" name="source_path" value="{{ URL::full() }}">

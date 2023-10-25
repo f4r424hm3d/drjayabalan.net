@@ -138,6 +138,7 @@ foreach ($blogs as $row) {
 }
 
 Route::post('inquiry/contact-us', [InquiryController::class, 'submitContactUs']);
+Route::post('inquiry/appointment', [InquiryController::class, 'appointment']);
 
 /* ADMIN ROUTES BEFORE LOGIN */
 Route::middleware(['adminLoggedOut'])->group(function () {
