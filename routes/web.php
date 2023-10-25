@@ -46,6 +46,8 @@ use App\Http\Controllers\FaqFc;
 use App\Http\Controllers\GalleryFc;
 use App\Http\Controllers\HomeFc;
 use App\Http\Controllers\TreatmentFc;
+use App\Models\Blog;
+use App\Models\Treatment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,10 +68,21 @@ Route::get('/gallery', [GalleryFc::class, 'index']);
 Route::get('/contact-us', [ContactFc::class, 'index']);
 
 Route::get('/treatments', [TreatmentFc::class, 'index']);
+$treatments = Treatment::all();
+foreach ($treatments as $row) {
+  Route::get('/' . $row->treatment_slug, [TreatmentFc::class, 'treatmentDetail']);
+}
 
-Route::get('/blog', [BlogFc::class, 'index']);
+//Route::get('/blog', [BlogFc::class, 'index']);
 
 Route::get('/appointment', [AppointmentFc::class, 'index']);
+
+Route::get('/news', [BlogFc::class, 'index']);
+Route::get('/news/{slug}', [BlogFc::class, 'blogByCategory']);
+$blogs = Blog::all();
+foreach ($blogs as $row) {
+  Route::get('/' . $row->slug, [BlogFc::class, 'blogdetail']);
+}
 
 /* ADMIN ROUTES BEFORE LOGIN */
 Route::middleware(['adminLoggedOut'])->group(function () {

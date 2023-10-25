@@ -20,90 +20,18 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Male Infertility Management</h3>
-              <a class="blog-btn" href="male-infertility-management.html">Read more <i
-                  class="fa-solid fa-arrow-right"></i></a>
+        @foreach ($rows as $row)
+          <div class="col-lg-4 col-md-6 mb-30">
+            <div class="blog-single-item">
+              <div class="thumbnail"><img src="{{ asset($row->image_path) }}" alt="treatment"></div>
+              <div class="content">
+                <h3 class="mb-2">{{ $row->treatment_name }}</h3>
+                <a class="blog-btn" href="{{ url($row->treatment_slug) }}">Read more <i
+                    class="fa-solid fa-arrow-right"></i></a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Female Infertility Management</h3>
-              <a class="blog-btn" href="female-infertility-management.html">Read more <i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Intrauterine Insemination</h3>
-              <a class="blog-btn" href="intrauterine-insemination.html">Read more <i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">In Vitro Fertilization</h3>
-              <a class="blog-btn" href="in-vitro-fertilization.html">Read more <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Obstetrics And Gynaecology</h3>
-              <a class="blog-btn" href="obstetrics-and-gynaecology.html">Read more <i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Gynae Surgeries</h3>
-              <a class="blog-btn" href="gynae-surgeries.html">Read more <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Sexualy Dysfunction Therapy</h3>
-              <a class="blog-btn" href="sexualy-dysfunction-therapy.html">Read more <i
-                  class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-30">
-          <div class="blog-single-item">
-            <div class="thumbnail"><img src="{{ url('web/') }}/assets/img/best1.png" alt="treatment"></div>
-            <div class="content">
-              <h3 class="mb-2">Birth Control</h3>
-              <a class="blog-btn" href="birth-control.html">Read more <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
+        @endforeach
 
       </div>
     </div>

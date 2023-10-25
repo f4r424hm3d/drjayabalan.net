@@ -1,3 +1,7 @@
+  @php
+    use App\Models\Treatment;
+    $footerTreat = Treatment::limit(8)->get();
+  @endphp
   <!-- Start Footer Area -->
   <footer class="footer">
     <div class="footer-top pt-70 pb-50" style="background-image: url('{{ url('/web/') }}/assets/img/footer-bg.png');">
@@ -26,14 +30,9 @@
             <div class="footer-widegts-single">
               <h3 class="title">Treatments</h3>
               <ul>
-                <li><a href="male-infertility-management.html">Male Infertility Management</a></li>
-                <li><a href="female-infertility-management.html">Female Infertility Management</a></li>
-                <li><a href="intrauterine-insemination.html">Intrauterine Insemination</a></li>
-                <li><a href="in-vitro-fertilization.html">In Vitro Fertilization</a></li>
-                <li><a href="obstetrics-and-gynaecology.html">Obstetrics And Gynaecology</a></li>
-                <li><a href="gynae-surgeries.html">Gynae Surgeries</a></li>
-                <li><a href="sexualy-dysfunction-therapy.html">Sexualy Dysfunction Therapy</a></li>
-                <li><a href="birth-control.html">Birth Control</a></li>
+                @foreach ($footerTreat as $row)
+                  <li><a href="{{ url($row->treatment_slug) }}">{{ $row->treatment_name }}</a></li>
+                @endforeach
               </ul>
             </div>
           </div>
