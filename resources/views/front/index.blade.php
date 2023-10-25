@@ -372,7 +372,7 @@
       </div>
 
       <div class="button-area-about-footer mt-15">
-        <a class="button-1 mr-10" href="{{ url('/blog') }}">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="button-1 mr-10" href="{{ url('/news') }}">View All <i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
     </div>

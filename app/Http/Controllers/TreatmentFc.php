@@ -19,6 +19,7 @@ class TreatmentFc extends Controller
     $slug = $request->segment(1);
     $treatment = Treatment::where('treatment_slug', $slug)->firstOrFail();
     $treatments = Treatment::where('id', '!=', $treatment->id)->limit(10)->get();
+    $allTr = Treatment::all();
 
     $page_url = url()->current();
 
@@ -44,7 +45,7 @@ class TreatmentFc extends Controller
 
     $og_image_path = $treatment->thumbnail_path == '' ? $dseo->og_image_path : $treatment->thumbnail_path;
 
-    $data = compact('treatments', 'treatment', 'page_url', 'dseo', 'sub_slug', 'site', 'meta_title', 'meta_keyword', 'page_content', 'meta_description', 'og_image_path');
+    $data = compact('treatments', 'treatment', 'page_url', 'dseo', 'sub_slug', 'site', 'meta_title', 'meta_keyword', 'page_content', 'meta_description', 'og_image_path', 'allTr');
     return view('front.treatment-detail')->with($data);
   }
 }

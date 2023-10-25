@@ -97,7 +97,7 @@
                     </ul>
                   </li>
                   <li><a href="{{ url('/contact-us') }}">Contact us</a></li>
-                  <li><a href="{{ url('/blog') }}">Blog</a></li>
+                  <li><a href="{{ url('/news') }}">Blog</a></li>
                 </ul>
               </nav>
             </div>
@@ -165,7 +165,7 @@
               </ul>
             </li>
             <li><a href="{{ url('/contact-us') }}">Contact us</a></li>
-            <li><a href="{{ url('/blog') }}">Blog</a></li>
+            <li><a href="{{ url('/news') }}">Blog</a></li>
             <li><a href="{{ url('/appointment') }}">Make Appointment</a></li>
           </ul>
         </div>

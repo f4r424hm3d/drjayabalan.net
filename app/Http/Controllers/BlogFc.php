@@ -50,6 +50,8 @@ class BlogFc extends Controller
   }
   public function blogdetail(Request $request)
   {
+    $allTr = Treatment::all();
+
     $slug = $request->segment(1);
     $blog = Blog::where('slug', $slug)->firstOrFail();
     $blogs = Blog::where('id', '!=', $blog->id)->limit(10)->get();
@@ -82,7 +84,7 @@ class BlogFc extends Controller
 
     $og_image_path = $blog->thumbnail_path == '' ? $dseo->og_image_path : $blog->thumbnail_path;
 
-    $data = compact('categories', 'blogs', 'blog', 'page_url', 'dseo', 'sub_slug', 'site', 'meta_title', 'meta_keyword', 'page_content', 'meta_description', 'og_image_path', 'treatments');
+    $data = compact('categories', 'blogs', 'blog', 'page_url', 'dseo', 'sub_slug', 'site', 'meta_title', 'meta_keyword', 'page_content', 'meta_description', 'og_image_path', 'treatments', 'allTr');
     return view('front.blog-detail')->with($data);
   }
 }

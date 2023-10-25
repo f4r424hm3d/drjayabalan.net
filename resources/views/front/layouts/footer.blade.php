@@ -43,7 +43,7 @@
               <ul>
                 <li><a href="{{ url('/about-us') }}">About Doctor</a></li>
                 <li><a href="{{ url('/treatments') }}">Treatments</a></li>
-                <li><a href="{{ url('/blog') }}">News & Blogs</a></li>
+                <li><a href="{{ url('/news') }}">News & Blogs</a></li>
                 <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
                 <li><a href="{{ url('/gallery') }}">Gallery</a></li>
                 <li><a href="{{ url('/faq') }}">Frequently Asked Questions</a></li>
