@@ -3,6 +3,48 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width" />
+
+  <style>
+    .pink-btn {
+      font-weight: bold;
+      background: #e74e84;
+      color: #fff;
+      align-items: center;
+      padding: 12px 25px;
+      font-size: 15px;
+      border-radius: 4px;
+      border: 0px
+    }
+
+    .pink-btn a {
+      color: #fff;
+      text-decoration: none
+    }
+
+    .pink-btn:hover {
+      background: #3f4079;
+    }
+
+    .blue-btn {
+      font-weight: bold;
+      background: #3f4079;
+      color: #fff;
+      align-items: center;
+      padding: 12px 25px;
+      font-size: 15px;
+      border-radius: 4px;
+      border: 0px
+    }
+
+    .blue-btn a {
+      color: #fff;
+      text-decoration: none
+    }
+
+    .blue-btn:hover {
+      background: #e74e84;
+    }
+  </style>
 </head>
 
 <body
@@ -13,41 +55,34 @@
       <td valign="top" style="display:block;clear:both;margin:0 auto;max-width:580px;">
         <table border="0" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
           <tr>
-            <td valign="top" align="center" class="masthead" style="padding:20px 0;background:#03618c;color:white;">
+            <td valign="top" align="center" class="masthead"
+              style="padding:20px 0px 5px 0px;background:#3f4079;color:white;">
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
                 <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer"
-                  style="text-decoration:none;color:#ffffff;">Dr Jayabalan</a>
+                  style="text-decoration:none;color:#ffffff;">{{ config('app.name') }}</a>
                 <p style="margin-bottom:0;line-height:12px;font-weight:normal;margin-top:15px;font-size:18px;"></p>
               </h1>
             </td>
           </tr>
           <tr>
-            <td valign="top" class="content" style="background:white;padding:20px 35px 10px 35px;">
-              <h3>Hello
-                <?php print $name; ?>,
-              </h3>
+            <td valign="top" class="content" style="background:white;padding:25px;">
               <p style="text-align: justify">
-                Thank you for your interest in brochure. One of our admission counsellors will be in touch with you
-                shortly.
-                <br>
-                {{-- <br>
-                <span style="color: black; font-weight: bold;">
-                  Download your brochure by <a href="{{ asset($brochure_path) }}"><b>CLICK HERE</b></a> for {{
-                  $destination
-                  }}.
-                </span> --}}
-                <br>
-                <br>
-                You can call us directly <a href="tel:919818560331">+91 9818 560 331</a>
-                <br>
-                In case of any queries, feel free to contact us at <span
-                  style="color: #fcb709;font-weight:bold">info@tutelagestudy.com</span>
+                Hi Team,<br>
+                New Inquiry from <b>{{ config('app.name') }}</b><br>
+
+              <ul>
+                <li>Name : {{ $name }}</li>
+                <li>Email : {{ $email }}</li>
+                <li>Mobile : {{ $mobile }}</li>
+                @if ($inquiry_message)
+                  <li>Exam : {{ $inquiry_message }}</li>
+                @endif
+              </ul>
               </p>
-              <hr>
             </td>
           </tr>
           <tr>
-            <td valign="top" align="center" class="masthead" style="padding:20px 0;background:#03618c;color:white;">
+            <td valign="top" align="center" class="masthead" style="padding:20px 0;background:#e74e84;color:white;">
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
               </h1>
             </td>

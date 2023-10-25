@@ -15,8 +15,8 @@
           <tr>
             <td valign="top" align="center" class="masthead" style="padding:20px 0;background:#03618c;color:white;">
               <h1 style="font-size:32px;margin:0 auto;max-width:90%;line-height:1.25;">
-                <a href="https://wwww.tutelagestudy.com" target="_blank" rel="noopener noreferrer"
-                  style="text-decoration:none;color:#ffffff;">Dr Jayabalan</a>
+                <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer"
+                  style="text-decoration:none;color:#ffffff;">{{ config('app.name') }}</a>
                 <p style="margin-bottom:0;line-height:12px;font-weight:normal;margin-top:15px;font-size:18px;"></p>
               </h1>
             </td>
@@ -24,23 +24,15 @@
           <tr>
             <td valign="top" class="content" style="background:white;padding:20px 35px 10px 35px;">
               <h3>Hello
-                <?php print $name; ?>,
+                {{ $name }},
               </h3>
               <p style="text-align: justify">
-                Thank you for your interest in <span style="color: black; font-weight: bold;">
-                  <?php print $destination; ?>
-                </span>. One of our admission counsellors will be in touch with you shortly.
+                Thank you for contacting us. We will be in touch with you shortly.
                 <br>
                 <br>
                 <br>
-                In case of any queries, feel free to contact us at <span
-                  style="color: #fcb709;font-weight:bold">info@tutelagestudy.com</span>
               </p>
               <hr>
-              <!-- <p style="text-align: justify">
-                <b>Our mailing address is:</b><br>
-                B-16 ground floor Gurugram, Mayfield Garden,<br>Sector 50, Gurugram
-              </p> -->
             </td>
           </tr>
           <tr>

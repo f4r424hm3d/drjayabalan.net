@@ -45,6 +45,7 @@ use App\Http\Controllers\ContactFc;
 use App\Http\Controllers\FaqFc;
 use App\Http\Controllers\GalleryFc;
 use App\Http\Controllers\HomeFc;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\TreatmentFc;
 use App\Models\Blog;
 use App\Models\Treatment;
@@ -66,6 +67,7 @@ Route::get('/about-us', [AboutFc::class, 'index']);
 Route::get('/faq', [FaqFc::class, 'index']);
 Route::get('/gallery', [GalleryFc::class, 'index']);
 Route::get('/contact-us', [ContactFc::class, 'index']);
+Route::get('/thank-you', [ContactFc::class, 'thankYou']);
 
 Route::get('/treatments', [TreatmentFc::class, 'index']);
 $treatments = Treatment::all();
@@ -83,6 +85,8 @@ $blogs = Blog::all();
 foreach ($blogs as $row) {
   Route::get('/' . $row->slug, [BlogFc::class, 'blogdetail']);
 }
+
+Route::post('inquiry/contact-us', [InquiryController::class, 'submitContactUs']);
 
 /* ADMIN ROUTES BEFORE LOGIN */
 Route::middleware(['adminLoggedOut'])->group(function () {

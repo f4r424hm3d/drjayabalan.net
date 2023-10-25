@@ -10,4 +10,8 @@ class ContactFc extends Controller
   {
     return view('front.contact-us');
   }
+  public function thankYou(Request $request)
+  {
+    return view('front.thank-you');
+  }
 }

@@ -56,31 +56,47 @@
               <h2>Have Questions? <br> Get in Touch!</h2>
             </div>
             <div class="get-appointment-form">
-              <form id="contact-form"
-                action="https://www.creativemela.com/themeforest_html/Mivaan_Health_Medical_HTML_Template_Demo/demo/Mivaan_Health_&amp;_Medical_HTML_Template/mail.php"
-                method="POST">
+              <form id="contact-for" action="{{ url('inquiry/contact-us') }}" method="POST">
+                @csrf
+                <input type="hidden" name="source" value="contact-us">
+                <input type="hidden" name="source_path" value="{{ URL::full() }}">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="single-field">
                       <label for="name">Your Name</label>
-                      <input type="text" placeholder="Write your name" name="name" id="name">
+                      <input type="text" placeholder="Write your name" name="name" id="name"
+                        value="{{ old('name') }}">
+                      @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="single-field">
                       <label for="phone">Phone Number</label>
-                      <input type="text" placeholder="+66 555 666 888 22" name="phone" id="phone">
+                      <input type="text" placeholder="+66 555 666 888 22" name="mobile" id="mobile"
+                        value="{{ old('mobile') }}">
+                      @error('mobile')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </div>
                   </div>
                   <div class="col-sm-12">
                     <div class="single-field">
                       <label for="email">Email</label>
-                      <input type="email" placeholder="example@gmail.com" name="email" id="email">
+                      <input type="email" placeholder="example@gmail.com" name="email" id="email"
+                        value="{{ old('email') }}">
+                      @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </div>
                   </div>
                   <div class="col-sm-12">
                     <div class="single-field">
-                      <textarea name="message" placeholder="Write Your Message" id="message"></textarea>
+                      <textarea name="message" placeholder="Write Your Message" id="message">{{ old('message') }}</textarea>
+                      @error('message')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </div>
                   </div>
                   <div class="col-sm-12 mb-30">
@@ -89,7 +105,7 @@
                   </div>
                   <div class="col-md-5 col-sm-8">
                     <div class="single-field pt-20 pb-0">
-                      <button class="button-1">Submit Now <i class="fa-solid fa-arrow-right"></i></button>
+                      <button class="button-1" type="submit">Submit Now <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                   </div>
                 </div>
