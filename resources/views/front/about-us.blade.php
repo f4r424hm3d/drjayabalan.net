@@ -4,7 +4,8 @@
 @endpush
 @section('main-section')
   <!-- Start Bredcrumb Area -->
-  <section class="breadcumb-area pt-70 pb-70" style="background-image: url('assets/img/breadcrumb.png')">
+  <section class="breadcumb-area pt-70 pb-70"
+    style="background-image: url('{{ url('web/') }}/assets/img/breadcrumb.png')">
     <div class="container">
       <h2>About Doctor</h2>
       <ul>
@@ -191,7 +192,7 @@
   </section>
   <!-- End Why Choose us Area -->
 
-  <section class="checkup-area pt-10" style="background-image: url('assets/img/checkup-bg.png')">
+  <section class="checkup-area pt-10" style="background-image: url('{{ url('web/') }}/assets/img/checkup-bg.png')">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-4 pb-2"><img src="{{ url('web/') }}/assets/img/happy-doctor.png" alt="doctor"

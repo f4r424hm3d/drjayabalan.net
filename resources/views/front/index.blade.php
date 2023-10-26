@@ -8,7 +8,7 @@
     <div class="hero-slider-full owl-carousel">
 
       <div class="hero-slider-item h-slider d-flex align-items-center"
-        style="background-image: url('assets/img/slider/1.jpg');">
+        style="background-image: url('{{ url('web/') }}/assets/img/slider/1.jpg');">
         <div class="shap-img">
           <img class="shap1 heartbeat" src="{{ url('web/') }}/assets/img/shap/shap5.png" alt="shap">
           <img class="shap3 rotateme" src="{{ url('web/') }}/assets/img/shap/light.png" alt="shap">
@@ -30,7 +30,7 @@
       </div>
 
       <div class="hero-slider-item h-slider d-flex align-items-center"
-        style="background-image: url('assets/img/slider/2.jpg');">
+        style="background-image: url('{{ url('web/') }}/assets/img/slider/2.jpg');">
         <div class="shap-img">
           <img class="shap1 heartbeat" src="{{ url('web/') }}/assets/img/shap/shap5.png" alt="shap">
           <img class="shap4 heartbeat" src="{{ url('web/') }}/assets/img/shap/shap2.png" alt="shap">
