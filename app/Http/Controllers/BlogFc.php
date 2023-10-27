@@ -65,7 +65,7 @@ class BlogFc extends Controller
     $dseo = DynamicPageSeo::where($wrdseo)->first();
 
     $sub_slug = $blog->title;
-    $category = str_replace('-', ' ', $blog->cate_slug);
+    $category = $blog->getCategory->category_name;
     $site = 'drjayabalan.net';
 
     $tagArray = ['title' => $sub_slug, 'category' => $category, 'currentmonth' => date('M'), 'currentyear' => date('Y'), 'site' => $site];
