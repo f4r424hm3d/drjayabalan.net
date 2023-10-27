@@ -4,7 +4,7 @@
 @endpush
 @section('main-section')
   <!-- Start Bredcrumb Area -->
-  <section class="breadcumb-area pt-70 pb-70"
+  <section class="breadcumb-area pt-50 pb-50"
     style="background-image: url('{{ url('web/') }}/assets/img/breadcrumb.png')">
     <div class="container">
       <h2>Treatments</h2>
@@ -18,7 +18,7 @@
   <!-- End Bredcrumb Area -->
 
   <!-- Start Blog Details Section -->
-  <section class="singlepage-area pt-120 pb-90">
+  <section class="singlepage-area pt-80 pb-80">
     <div class="container">
       <div class="row">
 
@@ -26,7 +26,7 @@
           <!-- Singlepage Content -->
           <div class="singlepage-content">
             <img class="details-singleimg" src="{{ asset($treatment->image_path) }}"
-              alt="{{ $treatment->treatment_name }}">
+              alt="{{ $treatment->treatment_name }}"><hr/>
 
             {!! $treatment->description !!}
 

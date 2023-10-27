@@ -91,7 +91,7 @@
               <div class="button-area-about-footer mt-15">
                 <a class="button-1 mr-10" href="{{ url('/about-us') }}">About More <i
                     class="fa-solid fa-arrow-right"></i></a>
-                <a href="https://www.youtube.com/watch?v=WC-g0JtEIwM" class="video-btn"><i
+                <a href="#"><i
                     class="fa-solid fa-play"></i></a>
               </div>
             </div>
@@ -135,7 +135,7 @@
                 fertilize an egg, and help the fertilized egg implant in your uterus.</p>
             </div>
             <div class="button-area-about-footer mt-15">
-              <a class="button-1 mr-10" href="intrauterine-insemination.html">Read More <i
+              <a class="button-1 mr-10" href="https://www.drjayabalan.net/male-infertility-management">Read More <i
                   class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
@@ -155,7 +155,7 @@
               <h3 class="mb-0">In Vitro Fertilization</h3>
               <p class="mb-15">IVF works by removing eggs from a woman's body. The eggs are then mixed with sperm to
                 make embryos. The embryos are then put back in the woman's body.</p>
-              <a class="button-1" href="in-vitro-fertilization.html">Read more <i
+              <a class="button-1" href="https://www.drjayabalan.net/in-vitro-fertilization">Read more <i
                   class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
@@ -169,7 +169,7 @@
               <h3 class="mb-0">Female Infertility</h3>
               <p class="mb-15">Female infertility means not being able to get pregnant after at least one year of
                 trying (or 6 months if the woman is over age 35). If a woman keeps having</p>
-              <a class="button-1" href="female-infertility-management.html">Read more <i
+              <a class="button-1" href="https://www.drjayabalan.net/female-infertility-management">Read more <i
                   class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
@@ -194,7 +194,7 @@
                 antenatal diagnosis, and intervention.</p>
             </div>
             <div class="button-area-about-footer mt-15">
-              <a class="button-1 mr-10" href="obstetrics-and-gynaecology.html">Read More <i
+              <a class="button-1 mr-10" href="https://www.drjayabalan.net/obstetrics-and-gynaecology">Read More <i
                   class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
