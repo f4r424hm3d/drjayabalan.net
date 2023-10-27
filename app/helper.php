@@ -1,16 +1,17 @@
 <?php
 
-// define('TO_EMAIL', 'studytutelage@gmail.com');
-// define('TO_NAME', 'Team tutelage Study');
-// define('CC_EMAIL', 'amanahlawat1918@gmail.com');
-// define('CC_NAME', 'Aman Ahlawat');
+define('TO_EMAIL', 'jayabalanlab@gmail.com');
+define('TO_NAME', 'Dr Jayabalan');
+define('cc_EMAIL', 'studytutelage@gmail.com');
+define('cc_NAME', 'Team tutelage Study');
 
-define('TO_EMAIL', 'farazahmad280@gmail.com');
-define('TO_NAME', 'Mohd Faraz');
+// define('TO_EMAIL', 'farazahmad280@gmail.com');
+// define('TO_NAME', 'Mohd Faraz');
+// define('CC_EMAIL', '4hm3df4r42@gmail.com');
+// define('CC_NAME', 'Dr Jayabalan');
+
 define('BCC_EMAIL', 'farazahmad280@gmail.com');
 define('BCC_NAME', 'Mohd Faraz');
-define('CC_EMAIL', '4hm3df4r42@gmail.com');
-define('CC_NAME', 'Dr Jayabalan');
 
 
 if (!function_exists('printArray')) {
