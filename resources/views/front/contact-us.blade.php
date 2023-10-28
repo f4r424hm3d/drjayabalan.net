@@ -57,7 +57,7 @@
               <h2>Have Questions? <br> Get in Touch!</h2>
             </div>
             <div class="get-appointment-form">
-              <form id="contact-for" action="{{ url('inquiry/contact-us/') }}/" method="POST">
+              <form id="contact-for" action="{{ url('inquiry/appointment/') }}/" method="POST">
                 @csrf
                 <input type="hidden" name="source" value="contact-us">
                 <input type="hidden" name="source_path" value="{{ URL::full() }}">
@@ -88,6 +88,27 @@
                       <input type="email" placeholder="example@gmail.com" name="email" id="email"
                         value="{{ old('email') }}">
                       @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
+                    <div class="single-field">
+                      <label for="treatment_id">Treatment</label>
+                      <select name="treatment_id" id="treatment_id">
+                        <option>Select Treatment</option>
+                        @foreach ($treatments as $row)
+                          <option value="{{ $row->id }}">{{ $row->treatment_name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
+                    <div class="single-field">
+                      <label for="appointment_date">Date</label>
+                      <input type="date" name="appointment_date" id="appointment_date"
+                        value="{{ old('appointment_date') }}">
+                      @error('appointment_date')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
                     </div>

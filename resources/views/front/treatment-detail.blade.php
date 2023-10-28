@@ -10,7 +10,7 @@
       <h2>Treatments</h2>
       <ul>
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li>Treatments</li>
+        <li><a href="{{ url('/treatments') }}">>Treatments</a></li>
         <li>{{ $treatment->treatment_name }}</li>
       </ul>
     </div>
@@ -26,7 +26,8 @@
           <!-- Singlepage Content -->
           <div class="singlepage-content">
             <img class="details-singleimg" src="{{ asset($treatment->image_path) }}"
-              alt="{{ $treatment->treatment_name }}"><hr/>
+              alt="{{ $treatment->treatment_name }}">
+            <hr />
 
             {!! $treatment->description !!}
 
@@ -46,7 +47,7 @@
                   @foreach ($treatments as $row)
                     <li>
                       <a href="{{ url($row->treatment_slug) }}">
-                        <i class="fa-solid fa-caret-right"></i> M{{ $row->treatment_name }}
+                        <i class="fa-solid fa-caret-right"></i> {{ $row->treatment_name }}
                       </a>
                     </li>
                   @endforeach
