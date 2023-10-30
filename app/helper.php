@@ -133,6 +133,16 @@ if (!function_exists('userIcon')) {
     }
   }
 }
+if (!function_exists('testimonialIcon')) {
+  function testimonialIcon($path = null)
+  {
+    if ($path != null || $path != '') {
+      return asset($path);
+    } else {
+      return asset('default/testimonial-icon.jpg');
+    }
+  }
+}
 if (!function_exists('json_to_string')) {
   function json_to_string($value)
   {

@@ -235,92 +235,36 @@
     </div>
   </section>
   <!-- End Our Journey Area -->
-
-  <!-- Start Testimonial Area -->
-  <section class="testimonial-area pt-110 pb-120">
-    <div class="container">
-      <!-- Section Title -->
-      <div class="section-title text-center mb-20">
-        <h3>Our Testimonials</h3>
-        <h2>What clients Say?</h2>
-      </div>
-      <div class="all-testimonial owl-carousel owl-theme">
-
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
-            </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
+  @if ($testimonials->count() > 0)
+    <!-- Start Testimonial Area -->
+    <section class="testimonial-area pt-110 pb-120">
+      <div class="container">
+        <!-- Section Title -->
+        <div class="section-title text-center mb-20">
+          <h3>Our Testimonials</h3>
+          <h2>What clients Say?</h2>
         </div>
+        <div class="all-testimonial owl-carousel owl-theme">
 
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client2.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
+          @foreach ($testimonials as $row)
+            <div class="single-testimonial">
+              <div class="testimonial-top">
+                <div class="testimonial-img"><img src="{{ testimonialIcon($row->image_path) }}" alt="Client">
+                </div>
+                <div class="testimonial-text">
+                  <h5>{{ $row->name }}</h5>
+                  <span>{{ $row->designation }}</span>
+                </div>
+              </div>
+              <p>{{ $row->review }}</p>
             </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
-        </div>
+          @endforeach
 
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client3.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
-            </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
-        </div>
-
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
-            </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
-        </div>
-
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client2.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
-            </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
-        </div>
-
-        <div class="single-testimonial">
-          <div class="testimonial-top">
-            <div class="testimonial-img"><img src="{{ url('web/') }}/assets/img/client3.png" alt="Client"></div>
-            <div class="testimonial-text">
-              <h5>Jems Bonrnli Era</h5>
-              <span>Glenic CEO</span>
-            </div>
-          </div>
-          <p>Nullam cursus lacus insr veneni atis estas. Fusceri libero lorem, vehicul ege sapien id, faucibus vulp.
-            Donec ut urna.</p>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- End Testimonial Area -->
+    </section>
+    <!-- End Testimonial Area -->
+  @endif
   @if ($blogs->count() > 0)
     <!-- Start Blog Area -->
     <section class="blog-area homep2 pt-110 pb-80">
