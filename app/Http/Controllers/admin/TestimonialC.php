@@ -11,7 +11,6 @@ class TestimonialC extends Controller
 {
   public function index($id = null)
   {
-    $countries = Country::all();
     $rows = Testimonial::get();
     if ($id != null) {
       $sd = Testimonial::find($id);
@@ -30,7 +29,7 @@ class TestimonialC extends Controller
     }
     $page_title = "Testimonials";
     $page_route = "testimonials";
-    $data = compact('rows', 'sd', 'ft', 'url', 'title', 'page_title', 'page_route','countries');
+    $data = compact('rows', 'sd', 'ft', 'url', 'title', 'page_title', 'page_route');
     return view('admin.testimonials')->with($data);
   }
   public function store(Request $request)
@@ -40,27 +39,28 @@ class TestimonialC extends Controller
     $request->validate(
       [
         'name' => 'required',
-        'thumbnail' => 'nullable|max:5000|mimes:jpg,jpeg,png,gif',
+        'designation' => 'required',
+        'image' => 'nullable|max:5000|mimes:jpg,jpeg,png,gif',
         'review' => 'required',
-        'country' => 'required',
       ]
     );
     $field = new Testimonial;
-    if ($request->hasFile('thumbnail')) {
-      $fileOriginalName = $request->file('thumbnail')->getClientOriginalName();
+    if ($request->hasFile('image')) {
+      $fileOriginalName = $request->file('image')->getClientOriginalName();
       $fileNameWithoutExtention = pathinfo($fileOriginalName, PATHINFO_FILENAME);
       $file_name_slug = slugify($fileNameWithoutExtention);
-      $fileExtention = $request->file('thumbnail')->getClientOriginalExtension();
+      $fileExtention = $request->file('image')->getClientOriginalExtension();
       $file_name = $file_name_slug . '_' . time() . '.' . $fileExtention;
-      $move = $request->file('thumbnail')->move('uploads/testimonial/', $file_name);
+      $move = $request->file('image')->move('uploads/testimonial/', $file_name);
       if ($move) {
-        $field->image = 'uploads/testimonial/' . $file_name;
+        $field->image_name = $file_name;
+        $field->image_path = 'uploads/testimonial/' . $file_name;
       } else {
         session()->flash('emsg', 'Some problem occured. File not uploaded.');
       }
     }
     $field->name = $request['name'];
-    $field->country = $request['country'];
+    $field->designation = $request['designation'];
     $field->review = $request['review'];
     $field->save();
     session()->flash('smsg', 'New record has been added successfully.');
@@ -69,34 +69,48 @@ class TestimonialC extends Controller
   public function delete($id)
   {
     //echo $id;
-    echo $result = Testimonial::find($id)->delete();
+    //echo $result = Testimonial::find($id)->delete();
+    if ($id) {
+      $row = Testimonial::findOrFail($id);
+      if ($row->image_path != null) {
+        unlink($row->image_path);
+      }
+      $row->delete();
+      return response()->json(['success' => 'Record hase been deleted successfully.']);
+    }else{
+      return response()->json(['failed' => 'Some problem occured.']);
+    }
   }
   public function update($id, Request $request)
   {
     $request->validate(
       [
         'name' => 'required',
-        'thumbnail' => 'nullable|max:5000|mimes:jpg,jpeg,png,gif',
+        'designation' => 'required',
+        'image' => 'nullable|max:5000|mimes:jpg,jpeg,png,gif',
         'review' => 'required',
-        'country' => 'required',
       ]
     );
     $field = Testimonial::find($id);
-    if ($request->hasFile('thumbnail')) {
-      $fileOriginalName = $request->file('thumbnail')->getClientOriginalName();
+    if ($request->hasFile('image')) {
+      if ($field->image_path != null) {
+        unlink($field->image_path);
+      }
+      $fileOriginalName = $request->file('image')->getClientOriginalName();
       $fileNameWithoutExtention = pathinfo($fileOriginalName, PATHINFO_FILENAME);
       $file_name_slug = slugify($fileNameWithoutExtention);
-      $fileExtention = $request->file('thumbnail')->getClientOriginalExtension();
+      $fileExtention = $request->file('image')->getClientOriginalExtension();
       $file_name = $file_name_slug . '_' . time() . '.' . $fileExtention;
-      $move = $request->file('thumbnail')->move('uploads/testimonial/', $file_name);
+      $move = $request->file('image')->move('uploads/testimonial/', $file_name);
       if ($move) {
-        $field->image = 'uploads/testimonial/' . $file_name;
+        $field->image_name = $file_name;
+        $field->image_path = 'uploads/testimonial/' . $file_name;
       } else {
         session()->flash('emsg', 'Some problem occured. File not uploaded.');
       }
     }
     $field->name = $request['name'];
-    $field->country = $request['country'];
+    $field->designation = $request['designation'];
     $field->review = $request['review'];
     $field->save();
     session()->flash('smsg', 'Record has been updated successfully.');

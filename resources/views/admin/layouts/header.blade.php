@@ -223,6 +223,12 @@
                 </a>
               </li>
               <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle arrow-none" href="{{ aurl('testimonials') }}"
+                  id="topnav-dashboard" role="button">
+                  <i data-feather="file-text"></i><span data-key="t-dashboards">Testimonials</span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle arrow-none" href="{{ aurl('gallery') }}" id="topnav-dashboard"
                   role="button">
                   <i data-feather="file-text"></i><span data-key="t-dashboards">Gallery</span>
