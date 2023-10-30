@@ -91,8 +91,14 @@
 
                         <a href="javascript:void()" onclick="editInfoModelFunc('{{ $row->id }}')"
                           data-bs-toggle="modal" data-target="#updateInfoModel" data-bs-target="#DesModalScrollable"
-                          class="btn btn-xs btn-primary waves-effect waves-light" title="Edit"><i
-                            data-feather="edit"></i></a>
+                          class="waves-effect waves-light btn btn-xs btn-outline btn-info" title="Edit"><i
+                            class="fa fa-edit" aria-hidden="true"></i></a>
+
+                        <a href="javascript:void()" onclick="DeleteAjax('{{ $row->id }}')"
+                          class="waves-effect waves-light btn btn-xs btn-outline btn-danger">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        </a>
                       </td>
                     </tr>
                     @php
@@ -118,6 +124,26 @@
   </div>
   @include('admin.update-student-info')
   <script>
+    function DeleteAjax(id) {
+      //alert(id);
+      var cd = confirm("Are you sure ?");
+      if (cd == true) {
+        $.ajax({
+          url: "{{ url('admin/leads/delete') }}" + "/" + id,
+          success: function(data) {
+            if (data == 1) {
+              var h = 'Success';
+              var msg = 'Record deleted successfully';
+              var type = 'success';
+              $('#row' + id).remove();
+              $('#toastMsg').text(msg);
+              $('#liveToast').show();
+            }
+          }
+        });
+      }
+    }
+
     $(document).ready(function() {
       $('#limit_per_page').change(function() {
         var sv = $('#limit_per_page').val();
