@@ -39,6 +39,7 @@ use App\Http\Controllers\admin\BlogC;
 use App\Http\Controllers\admin\BlogCategoryC;
 use App\Http\Controllers\admin\DynamicPageSeoC;
 use App\Http\Controllers\admin\GalleryC;
+use App\Http\Controllers\admin\LeadC;
 use App\Http\Controllers\admin\UploadFilesC;
 use App\Http\Controllers\AppointmentFc;
 use App\Http\Controllers\BlogFc;
@@ -251,6 +252,17 @@ Route::middleware(['adminLoggedIn'])->group(function () {
       Route::post('/store-ajax', [UploadFilesC::class, 'storeAjax']);
       Route::get('/update/{id}', [UploadFilesC::class, 'index']);
       Route::post('/update/{id}', [UploadFilesC::class, 'update']);
+    });
+    Route::prefix('/leads')->group(function () {
+      Route::get('/', [LeadC::class, 'index']);
+      Route::get('/get-data', [LeadC::class, 'getData']);
+      Route::get('/delete/{id}', [LeadC::class, 'delete']);
+      Route::post('/store-ajax', [LeadC::class, 'storeAjax']);
+      Route::get('/update/{id}', [LeadC::class, 'index']);
+      Route::post('/update/{id}', [LeadC::class, 'update']);
+      Route::get('get-quick-info', [LeadC::class, 'getQuickInfo']);
+      Route::get('/update-quick-info/', [LeadC::class, 'updateQuickInfo']);
+      Route::get('/fetch-last-updated-record/{id}', [LeadC::class, 'fetchLastRecord']);
     });
   });
 });
