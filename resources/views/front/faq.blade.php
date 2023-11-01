@@ -10,7 +10,6 @@
       <h2>Frequently Asked Questions</h2>
       <ul>
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About Us</li>
         <li>FAQ</li>
       </ul>
     </div>

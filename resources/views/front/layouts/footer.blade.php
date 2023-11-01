@@ -19,7 +19,7 @@
                     href="mailto:jayabalanlab@gmail.com">jayabalanlab@gmail.com</a></li>
               </ul>
               <div class="footer-social mt-30">
-                <span><a href="#"><i class="fa-brands fa-facebook"></i></a></span>
+                <span><a href="https://www.facebook.com/drvjbalan06/"><i class="fa-brands fa-facebook"></i></a></span>
                 <span><a href="#"><i class="fa-brands fa-twitter"></i></a></span>
                 <span><a href="#"><i class="fa-brands fa-instagram"></i></a></span>
               </div>
